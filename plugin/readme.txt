@@ -28,6 +28,7 @@ The plugin talks to WordPress itself over the REST API. The only optional outbou
 == Changelog ==
 
 = 0.12.0 =
+* First public release.
 * WooCommerce store settings (shipping hide-when-free, selling/shipping countries, shipping instance titles, checkout privacy/terms) are allowlisted. Stripe/WooPayments settings stay forbidden.
 * Option read/write errors include reason, hint (option list), and an allowed_sample.
 * inspect_rendered_html returns final_url/redirected/requested_url and a body-centered html_excerpt (optional contains).
