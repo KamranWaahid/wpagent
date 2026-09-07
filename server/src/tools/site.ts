@@ -65,7 +65,7 @@ export const registerSiteTools: RegisterTools = (server, ctx) => {
 
   server.tool(
     "get_site_health",
-    "Inspect PHP version, active theme/plugins, disk space, and known issues.",
+    "Inspect PHP version, active theme/plugins, disk space, mail()/SMTP extras, and known issues.",
     { site: siteIdSchema },
     wrap(async (args) => {
       const { client } = clientFor(ctx, args.site);
@@ -225,7 +225,7 @@ export const registerSiteTools: RegisterTools = (server, ctx) => {
 
   server.tool(
     "update_option",
-    "Update an allowlisted option. Requires confirm=true. siteurl/home/admin_email cannot be written.",
+    "Update an allowlisted option. Requires confirm=true. Includes Woo store address, stock, tax, SSL, shop pages, and email From/Reply-To. siteurl/home/admin_email, payment-gateway blobs, Site Kit credentials, and Facebook tokens cannot be written.",
     {
       site: siteIdSchema,
       key: z.string().min(1),

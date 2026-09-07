@@ -25,6 +25,11 @@ class PageCacheTest extends TestCase {
 		$this->assertTrue( WPAgent_Page_Cache::should_flush_after( 'install_plugin' ) );
 		$this->assertFalse( WPAgent_Page_Cache::should_flush_after( 'create_post' ) );
 		$this->assertFalse( WPAgent_Page_Cache::should_flush_after( 'list_posts' ) );
+		$this->assertFalse( WPAgent_Page_Cache::should_flush_after( 'send_test_mail' ) );
+		$this->assertFalse( WPAgent_Page_Cache::should_flush_after( 'update_order' ) );
+		$this->assertTrue( WPAgent_Page_Cache::should_flush_after( 'update_product' ) );
+		$this->assertTrue( WPAgent_Page_Cache::should_flush_after( 'update_variation' ) );
+		$this->assertTrue( WPAgent_Page_Cache::should_flush_after( 'update_seo' ) );
 	}
 
 	public function test_flush_without_wordpress_skips_adapters(): void {

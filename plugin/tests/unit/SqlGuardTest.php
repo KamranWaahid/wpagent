@@ -95,4 +95,30 @@ class SqlGuardTest extends TestCase {
 		$this->expectException( InvalidArgumentException::class );
 		WPAgent_SQL_Guard::assert_read_only( '   ' );
 	}
+
+	public function test_show_tables_is_allowed(): void {
+		$result = WPAgent_SQL_Guard::assert_read_only( 'SHOW TABLES' );
+		$this->assertSame( 'SHOW TABLES', $result['sql'] );
+	}
+
+	public function test_show_tables_like_is_allowed(): void {
+		$result = WPAgent_SQL_Guard::assert_read_only( "SHOW TABLES LIKE 'wp_%'" );
+		$this->assertSame( "SHOW TABLES LIKE 'wp_%'", $result['sql'] );
+	}
+
+	public function test_show_create_is_blocked(): void {
+		$this->expectException( InvalidArgumentException::class );
+		WPAgent_SQL_Guard::assert_read_only( 'SHOW CREATE TABLE wp_posts' );
+	}
+
+	public function test_show_variables_is_blocked(): void {
+		$this->expectException( InvalidArgumentException::class );
+		WPAgent_SQL_Guard::assert_read_only( 'SHOW VARIABLES' );
+	}
+
+	public function test_apply_limit_skips_show_tables(): void {
+		$sql = WPAgent_SQL_Guard::apply_limit( 'SHOW TABLES', 10 );
+		$this->assertSame( 'SHOW TABLES', $sql );
+		$this->assertStringNotContainsString( 'LIMIT', $sql );
+	}
 }

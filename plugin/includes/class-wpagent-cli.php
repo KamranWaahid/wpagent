@@ -27,7 +27,7 @@ class WPAgent_Cli {
 			'post list'         => array( 'tier' => 'read', 'cap' => 'edit_posts', 'description' => 'List posts or pages (--post_type=page)' ),
 			'post delete'       => array( 'tier' => 'write', 'cap' => 'delete_posts', 'description' => 'Move a post or page to trash by id. --force is refused; use permanent_delete_post / permanent_delete_page.' ),
 			'post update'       => array( 'tier' => 'write', 'cap' => 'delete_posts', 'description' => 'Currently only --post_status=trash (same as post delete). Other edits use update_post / update_page.' ),
-			'db query'          => array( 'tier' => 'read', 'cap' => 'manage_options', 'description' => 'Read-only SELECT. Mutating SQL is refused, not approval-gated.' ),
+			'db query'          => array( 'tier' => 'read', 'cap' => 'manage_options', 'description' => 'Read-only SELECT or SHOW TABLES. Mutating SQL is refused, not approval-gated.' ),
 			'db prefix'         => array( 'tier' => 'read', 'cap' => 'manage_options', 'description' => 'Table prefix' ),
 			'db tables'         => array( 'tier' => 'read', 'cap' => 'manage_options', 'description' => 'List tables' ),
 			'core version'      => array( 'tier' => 'read', 'cap' => 'manage_options', 'description' => 'WordPress version' ),

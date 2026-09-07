@@ -107,6 +107,24 @@ class WPAgent_SQL_Guard {
 			throw new InvalidArgumentException( 'Multiple statements are not allowed.' );
 		}
 
+		// Literals are stripped, so SHOW TABLES LIKE 'wp_%' becomes "show tables like".
+		if ( preg_match( '/^show\b/', $compact ) ) {
+			if ( preg_match( '/^show\s+tables$/', $compact ) ) {
+				return array(
+					'sql'   => $sql,
+					'limit' => max( 1, min( $limit, self::MAX_ROW_LIMIT ) ),
+				);
+			}
+			if ( preg_match( '/^show\s+tables\s+like$/', $compact )
+				&& preg_match( '/^show\s+tables\s+like\s+(\'|")[^\'";]*\1\s*$/i', $sql ) ) {
+				return array(
+					'sql'   => $sql,
+					'limit' => max( 1, min( $limit, self::MAX_ROW_LIMIT ) ),
+				);
+			}
+			throw new InvalidArgumentException( 'Only SHOW TABLES or SHOW TABLES LIKE \'pattern\' is allowed.' );
+		}
+
 		if ( ! preg_match( '/^select\b/', $compact ) ) {
 			throw new InvalidArgumentException( 'Only SELECT statements are allowed.' );
 		}
@@ -231,6 +249,10 @@ class WPAgent_SQL_Guard {
 	 */
 	public static function apply_limit( string $sql, int $limit ): string {
 		$stripped = strtolower( self::strip_comments_and_literals( $sql ) );
+		$compact  = preg_replace( '/\s+/', ' ', trim( $stripped ) ) ?? '';
+		if ( preg_match( '/^show\s+tables\b/', $compact ) ) {
+			return rtrim( $sql, "; \t\n\r" );
+		}
 		if ( preg_match( '/\blimit\s+\d+/', $stripped ) ) {
 			return rtrim( $sql, "; \t\n\r" );
 		}

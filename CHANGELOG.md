@@ -2,6 +2,44 @@
 
 All notable changes to WPAgent are documented here. The WordPress plugin and MCP server share the same version.
 
+## [0.15.0] — 2026-09-08
+
+More store operations, still default-deny.
+
+- Customers, revenue report, low stock, reviews, variations, tax rates
+- Create/update coupons; toggle Woo transactional emails (no sending, no recipient changes)
+- Staff-only order notes; refunds recorded without calling the payment gateway
+- Yoast / Rank Math title, description, and canonical per post
+- Order status: pending, on-hold, processing, completed, cancelled, trash
+
+Secrets, payment-gateway writes, and mail to arbitrary customers stay blocked.
+
+## [0.14.0] — 2026-09-08
+
+Famous-plugin coverage without secrets.
+
+- WooCommerce products (list / get / update name, status, stock, prices) and coupons
+- Shipping zones (titles and costs; no carrier keys)
+- `get_integrations_status` — Google Site Kit, Listings & Ads, MonsterInsights, Meta pixel/catalog, Yoast / Rank Math
+- Payment flags: PayPal, Square, COD, BACS, cheque (plus existing WooPayments / Stripe)
+- More store options: address, units, reviews, stock, shop/cart/checkout pages
+- Still forbidden: OAuth tokens, API keys, licenses, webhook secrets, bank account numbers, customer mail
+
+## [0.13.0] — 2026-09-08
+
+WooCommerce store ops and mail probes without exposing payment or SMTP secrets.
+
+- `send_test_mail` (`confirm: true`) — `admin_email`, Woo From/Reply-To, or same host as the site
+- `get_mail_status` — `mail()` vs `disable_functions`, SMTP plugins, FluentSMTP host/port, recent logs
+- `get_payment_status` — WooPayments / Stripe enabled and test-mode flags only
+- `list_orders` / `get_order` — HPOS-safe; no card data
+- `update_order` — `cancelled` or `trash` only (`confirm: true`)
+- `update_option` — guest checkout, tax display, force SSL checkout, Woo email identity
+- `get_site_health` includes a `mail` block
+- `query_db` accepts `SHOW TABLES` and `SHOW TABLES LIKE`
+
+Payment-gateway settings, SMTP passwords, and mail to arbitrary customers stay forbidden.
+
 ## [0.12.0] — 2026-09-08
 
 First public release.
@@ -85,4 +123,7 @@ WordPress plugin (`plugin/`, GPL-2.0-or-later) plus a local MCP server (`server/
 
 - Connection, list/get posts, site health, safety layer, audit log
 
+[0.15.0]: https://github.com/KamranWaahid/wpagent/releases/tag/v0.15.0
+[0.14.0]: https://github.com/KamranWaahid/wpagent/releases/tag/v0.14.0
+[0.13.0]: https://github.com/KamranWaahid/wpagent/releases/tag/v0.13.0
 [0.12.0]: https://github.com/KamranWaahid/wpagent/releases/tag/v0.12.0

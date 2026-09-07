@@ -75,6 +75,36 @@ class PermissionMatrixTest extends TestCase {
 			'list_builder_catalog'          => 'edit_posts',
 			'get_builder_page'              => 'edit_posts',
 			'save_builder_page'             => 'edit_posts',
+			'send_test_mail'                => 'manage_options',
+			'get_mail_status'               => 'manage_options',
+			'get_payment_status'            => 'manage_options',
+			'list_orders'                   => 'manage_options',
+			'get_order'                     => 'manage_options',
+			'update_order'                  => 'manage_options',
+			'list_products'                 => 'manage_options',
+			'get_product'                   => 'manage_options',
+			'update_product'                => 'manage_options',
+			'list_coupons'                  => 'manage_options',
+			'get_coupon'                    => 'manage_options',
+			'list_shipping_zones'           => 'manage_options',
+			'get_integrations_status'       => 'manage_options',
+			'list_customers'                => 'manage_options',
+			'get_customer'                  => 'manage_options',
+			'get_store_report'              => 'manage_options',
+			'list_low_stock'                => 'manage_options',
+			'list_reviews'                  => 'manage_options',
+			'moderate_review'               => 'manage_options',
+			'create_coupon'                 => 'manage_options',
+			'update_coupon'                 => 'manage_options',
+			'list_variations'               => 'manage_options',
+			'update_variation'              => 'manage_options',
+			'add_order_note'                => 'manage_options',
+			'create_refund'                 => 'manage_options',
+			'get_woo_emails'                => 'manage_options',
+			'update_woo_email'              => 'manage_options',
+			'get_seo'                       => 'edit_posts',
+			'update_seo'                    => 'edit_posts',
+			'list_tax_rates'                => 'manage_options',
 		);
 	}
 
@@ -93,7 +123,7 @@ class PermissionMatrixTest extends TestCase {
 	}
 
 	public function test_writes_that_must_confirm(): void {
-		foreach ( array( 'activate_plugin', 'deactivate_plugin', 'install_plugin', 'update_plugin', 'update_theme', 'update_core', 'update_option', 'permanent_delete_post', 'permanent_delete_page', 'delete_draft_theme', 'publish_draft_theme', 'delete_nav_menu' ) as $command ) {
+		foreach ( array( 'activate_plugin', 'deactivate_plugin', 'install_plugin', 'update_plugin', 'update_theme', 'update_core', 'update_option', 'permanent_delete_post', 'permanent_delete_page', 'delete_draft_theme', 'publish_draft_theme', 'delete_nav_menu', 'send_test_mail', 'update_order', 'update_product', 'moderate_review', 'create_coupon', 'update_coupon', 'update_variation', 'create_refund', 'update_woo_email', 'update_seo' ) as $command ) {
 			$def = WPAgent_Allowlist::get( $command );
 			$this->assertTrue( ! empty( $def['requires_confirm'] ), $command );
 		}

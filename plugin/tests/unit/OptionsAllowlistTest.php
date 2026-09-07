@@ -87,6 +87,18 @@ class OptionsAllowlistTest extends TestCase {
 		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_specific_allowed_countries' ) );
 		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_flat_rate_6_settings' ) );
 		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_free_shipping_4_settings' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_enable_guest_checkout' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_calc_taxes' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_force_ssl_checkout' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_email_from_name' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_email_from_address' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_email_reply_to_address' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_email_footer_text' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_manage_stock' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_shop_page_id' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_write( 'woocommerce_demo_store_notice' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::can_read( 'wc_facebook_pixel_id' ) );
+		$this->assertFalse( WPAgent_Options_Allowlist::can_write( 'wc_facebook_pixel_id' ) );
 		$this->assertFalse( WPAgent_Options_Allowlist::can_write( 'woocommerce_currency' ) );
 		$this->assertTrue( WPAgent_Options_Allowlist::can_read( 'woocommerce_currency' ) );
 	}
@@ -95,6 +107,14 @@ class OptionsAllowlistTest extends TestCase {
 		$this->assertFalse( WPAgent_Options_Allowlist::can_read( 'woocommerce_stripe_settings' ) );
 		$this->assertFalse( WPAgent_Options_Allowlist::can_write( 'woocommerce_stripe_settings' ) );
 		$this->assertTrue( WPAgent_Options_Allowlist::is_blocked_key( 'woocommerce_stripe_settings' ) );
+		$this->assertFalse( WPAgent_Options_Allowlist::can_read( 'woocommerce_woocommerce_payments_settings' ) );
+		$this->assertFalse( WPAgent_Options_Allowlist::can_write( 'woocommerce_woocommerce_payments_settings' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::is_blocked_key( 'woocommerce_woocommerce_payments_settings' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::is_blocked_key( 'woocommerce_square_credit_card_settings' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::is_blocked_key( 'googlesitekit_credentials' ) );
+		$this->assertTrue( WPAgent_Options_Allowlist::is_blocked_key( 'wc_facebook_access_token' ) );
+		$this->assertFalse( WPAgent_Options_Allowlist::can_read( 'googlesitekit_credentials' ) );
+		$this->assertFalse( WPAgent_Options_Allowlist::can_read( 'wc_facebook_access_token' ) );
 		$this->assertFalse( WPAgent_Options_Allowlist::can_read( 'not_a_real_option' ) );
 		$denied = WPAgent_Options_Allowlist::reject_read( 'not_a_real_option' );
 		$this->assertSame( 'not_on_allowlist', $denied->details['reason'] );

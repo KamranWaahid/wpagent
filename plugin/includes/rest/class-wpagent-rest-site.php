@@ -26,6 +26,33 @@ class WPAgent_REST_Site extends WPAgent_REST_Controller {
 
 		register_rest_route(
 			$ns,
+			'/seo/(?P<id>\d+)',
+			array(
+				array(
+					'methods'             => 'GET',
+					'callback'            => array( $this, 'get_seo' ),
+					'permission_callback' => WPAgent_Permissions::callback( 'get_seo' ),
+				),
+				array(
+					'methods'             => 'POST',
+					'callback'            => array( $this, 'update_seo' ),
+					'permission_callback' => WPAgent_Permissions::callback( 'update_seo' ),
+				),
+			)
+		);
+
+		register_rest_route(
+			$ns,
+			'/integrations',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'integrations' ),
+				'permission_callback' => WPAgent_Permissions::callback( 'get_integrations_status' ),
+			)
+		);
+
+		register_rest_route(
+			$ns,
 			'/plugins',
 			array(
 				'methods'             => 'GET',
@@ -193,6 +220,7 @@ class WPAgent_REST_Site extends WPAgent_REST_Controller {
 						'total_bytes' => is_numeric( $disk_total ) ? (int) $disk_total : null,
 					),
 					'site_health'    => $health_counts,
+					'mail'           => WPAgent_Woo::health_mail_extras(),
 					'issues'         => $issues,
 					'wpagent'        => array(
 						'version'   => WPAGENT_VERSION,
@@ -206,6 +234,42 @@ class WPAgent_REST_Site extends WPAgent_REST_Controller {
 
 				return $payload;
 			}
+		);
+	}
+
+	public function get_seo( WP_REST_Request $request ) {
+		return $this->execute(
+			'get_seo',
+			$request,
+			static fn() => WPAgent_Integrations::get_post_seo( (int) $request['id'] )
+		);
+	}
+
+	public function update_seo( WP_REST_Request $request ) {
+		return $this->execute(
+			'update_seo',
+			$request,
+			static function () use ( $request ) {
+				$fields = array();
+				foreach ( array( 'yoast_title', 'yoast_description', 'yoast_canonical', 'yoast_noindex', 'rank_math_title', 'rank_math_description', 'rank_math_canonical' ) as $key ) {
+					if ( null !== $request->get_param( $key ) ) {
+						$fields[ $key ] = $request->get_param( $key );
+					}
+				}
+				return WPAgent_Integrations::update_post_seo( (int) $request['id'], $fields );
+			},
+			array(
+				'object_type' => 'seo',
+				'object_id'   => (int) $request['id'],
+			)
+		);
+	}
+
+	public function integrations( WP_REST_Request $request ) {
+		return $this->execute(
+			'get_integrations_status',
+			$request,
+			static fn() => WPAgent_Integrations::status()
 		);
 	}
 

@@ -4,12 +4,12 @@ Open-source WordPress plugin + MCP server so Cursor, Claude, and ChatGPT can man
 
 Commands are **default-deny**, capability-checked in PHP, and written to an append-only audit log. Credentials stay on your machine — the MCP server never phones home.
 
-[![Version](https://img.shields.io/github/v/release/KamranWaahid/wpagent?label=version)](https://github.com/KamranWaahid/wpagent/releases/tag/v0.12.0)
+[![Version](https://img.shields.io/github/v/release/KamranWaahid/wpagent?label=version)](https://github.com/KamranWaahid/wpagent/releases/tag/v0.15.0)
 [![CI](https://github.com/KamranWaahid/wpagent/actions/workflows/ci.yml/badge.svg)](https://github.com/KamranWaahid/wpagent/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Plugin: GPLv2+](https://img.shields.io/badge/plugin-GPLv2%2B-green.svg)](plugin/LICENSE)
 
-**Current version: [0.12.0](https://github.com/KamranWaahid/wpagent/releases/tag/v0.12.0)** — first public release (8 September 2026). See [CHANGELOG.md](CHANGELOG.md).
+**Current version: [0.15.0](https://github.com/KamranWaahid/wpagent/releases/tag/v0.15.0)** — store report, customers, SEO fields, coupons (8 September 2026). See [CHANGELOG.md](CHANGELOG.md).
 
 ## Architecture
 
@@ -128,10 +128,10 @@ See [`docs/e2e-testing.md`](docs/e2e-testing.md).
 
 | Field | Value |
 | --- | --- |
-| Version | **0.12.0** (first public release) |
+| Version | **0.15.0** |
 | Released | 8 September 2026 |
 | Requires | WordPress 6.0+, PHP 8.1+, Node.js 20+ |
-| Tag | [`v0.12.0`](https://github.com/KamranWaahid/wpagent/releases/tag/v0.12.0) |
+| Tag | [`v0.15.0`](https://github.com/KamranWaahid/wpagent/releases/tag/v0.15.0) |
 
 Full history: [CHANGELOG.md](CHANGELOG.md).
 

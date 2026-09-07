@@ -4,7 +4,7 @@ Tags: mcp, ai, rest-api, application-passwords
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.1
-Stable tag: 0.12.0
+Stable tag: 0.15.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,6 +26,24 @@ The plugin talks to WordPress itself over the REST API. The only optional outbou
 4. For hosted clients (claude.ai / ChatGPT): verify email on your MCP server, then enter that server URL and pairing code here.
 
 == Changelog ==
+
+= 0.15.0 =
+* Customers, store report, low stock, reviews, variations, tax rates.
+* Create/update coupons; enable/disable Woo emails (no sending).
+* Order notes (staff only), refunds recorded without charging the gateway.
+* Yoast / Rank Math title and description per post. Order status can be set to processing/completed/etc.
+
+= 0.14.0 =
+* WooCommerce products (list/get/update stock and prices), coupons, and shipping zones.
+* get_integrations_status: Google Site Kit / Listings / Analytics, Meta pixel, Yoast/Rank Math. Public IDs only.
+* Payment flags expand to PayPal, Square, COD, BACS, cheque. Store address, stock, and shop page options allowlisted.
+* Site Kit credentials, Facebook tokens, and payment-gateway blobs stay forbidden.
+
+= 0.13.0 =
+* WooCommerce: get_payment_status (flags only), list_orders / get_order / update_order (cancel or trash).
+* Mail: get_mail_status, send_test_mail to admin_email / same-domain / Woo From only (confirm required).
+* Store options: guest checkout, tax, force SSL checkout, Woo email From/Reply-To.
+* get_site_health includes mail() / SMTP extras. query_db allows SHOW TABLES.
 
 = 0.12.0 =
 * First public release.

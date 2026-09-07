@@ -37,6 +37,12 @@ class WPAgent_Options_Allowlist {
 			'hsts_probe_token',
 			'woocommerce_stripe_settings',
 			'woocommerce_woocommerce_payments_settings',
+			'googlesitekit_credentials',
+			'wc_facebook_access_token',
+			'wc_facebook_system_user_access_token',
+			'monsterinsights_license',
+			'exactmetrics_license',
+			'jetpack_private_options',
 		);
 	}
 
@@ -90,16 +96,55 @@ class WPAgent_Options_Allowlist {
 	 */
 	private static function woocommerce_store_keys(): array {
 		return array(
-			'woocommerce_shipping_hide_rates_when_free'              => array( 'writable' => true,  'description' => 'Hide paid shipping rates when free shipping applies (yes/no)' ),
-			'woocommerce_allowed_countries'                          => array( 'writable' => true,  'description' => 'Selling countries (all/all_except/specific)' ),
-			'woocommerce_specific_allowed_countries'                 => array( 'writable' => true,  'description' => 'Specific selling country codes' ),
-			'woocommerce_ship_to_countries'                          => array( 'writable' => true,  'description' => 'Shipping countries (empty=allowed, specific, or disabled)' ),
-			'woocommerce_specific_ship_to_countries'                 => array( 'writable' => true,  'description' => 'Specific shipping country codes' ),
-			'woocommerce_checkout_privacy_policy_text'               => array( 'writable' => true,  'description' => 'Checkout privacy sentence ([privacy_policy] placeholder)' ),
+			'woocommerce_shipping_hide_rates_when_free'               => array( 'writable' => true,  'description' => 'Hide paid shipping rates when free shipping applies (yes/no)' ),
+			'woocommerce_allowed_countries'                           => array( 'writable' => true,  'description' => 'Selling countries (all/all_except/specific)' ),
+			'woocommerce_specific_allowed_countries'                  => array( 'writable' => true,  'description' => 'Specific selling country codes' ),
+			'woocommerce_ship_to_countries'                           => array( 'writable' => true,  'description' => 'Shipping countries (empty=allowed, specific, or disabled)' ),
+			'woocommerce_specific_ship_to_countries'                  => array( 'writable' => true,  'description' => 'Specific shipping country codes' ),
+			'woocommerce_checkout_privacy_policy_text'                => array( 'writable' => true,  'description' => 'Checkout privacy sentence ([privacy_policy] placeholder)' ),
 			'woocommerce_checkout_terms_and_conditions_checkbox_text' => array( 'writable' => true,  'description' => 'Terms checkbox text ([terms] placeholder)' ),
-			'woocommerce_terms_page_id'                              => array( 'writable' => true,  'description' => 'Terms and conditions page ID' ),
-			'woocommerce_currency'                                   => array( 'writable' => false, 'description' => 'Store currency (read-only)' ),
-			'woocommerce_default_country'                            => array( 'writable' => false, 'description' => 'Store base country (read-only)' ),
+			'woocommerce_terms_page_id'                               => array( 'writable' => true,  'description' => 'Terms and conditions page ID' ),
+			'woocommerce_currency'                                    => array( 'writable' => false, 'description' => 'Store currency (read-only)' ),
+			'woocommerce_default_country'                             => array( 'writable' => false, 'description' => 'Store base country (read-only)' ),
+			'woocommerce_enable_guest_checkout'                       => array( 'writable' => true,  'description' => 'Allow customers to place orders without an account (yes/no)' ),
+			'woocommerce_enable_signup_and_login_from_checkout'       => array( 'writable' => true,  'description' => 'Allow account creation during checkout (yes/no)' ),
+			'woocommerce_enable_checkout_login_reminder'              => array( 'writable' => true,  'description' => 'Show checkout login reminder (yes/no)' ),
+			'woocommerce_calc_taxes'                                  => array( 'writable' => true,  'description' => 'Enable tax calculation (yes/no)' ),
+			'woocommerce_prices_include_tax'                          => array( 'writable' => true,  'description' => 'Prices entered include tax (yes/no)' ),
+			'woocommerce_tax_display_shop'                            => array( 'writable' => true,  'description' => 'Shop tax display (incl/excl)' ),
+			'woocommerce_tax_display_cart'                            => array( 'writable' => true,  'description' => 'Cart/checkout tax display (incl/excl)' ),
+			'woocommerce_force_ssl_checkout'                          => array( 'writable' => true,  'description' => 'Force HTTPS at checkout (yes/no)' ),
+			'woocommerce_email_from_name'                             => array( 'writable' => true,  'description' => 'WooCommerce email From name' ),
+			'woocommerce_email_from_address'                          => array( 'writable' => true,  'description' => 'WooCommerce email From address' ),
+			'woocommerce_email_reply_to_enabled'                      => array( 'writable' => true,  'description' => 'Enable WooCommerce Reply-To (yes/no)' ),
+			'woocommerce_email_reply_to_name'                         => array( 'writable' => true,  'description' => 'WooCommerce Reply-To name' ),
+			'woocommerce_email_reply_to_address'                      => array( 'writable' => true,  'description' => 'WooCommerce Reply-To address' ),
+			'woocommerce_email_footer_text'                           => array( 'writable' => true,  'description' => 'WooCommerce email footer text' ),
+			'woocommerce_store_address'                               => array( 'writable' => true,  'description' => 'Store address line 1' ),
+			'woocommerce_store_address_2'                             => array( 'writable' => true,  'description' => 'Store address line 2' ),
+			'woocommerce_store_city'                                  => array( 'writable' => true,  'description' => 'Store city' ),
+			'woocommerce_store_postcode'                              => array( 'writable' => true,  'description' => 'Store postcode' ),
+			'woocommerce_weight_unit'                                 => array( 'writable' => true,  'description' => 'Weight unit (kg/g/lbs/oz)' ),
+			'woocommerce_dimension_unit'                              => array( 'writable' => true,  'description' => 'Dimension unit (m/cm/mm/in/yd)' ),
+			'woocommerce_enable_reviews'                              => array( 'writable' => true,  'description' => 'Enable product reviews (yes/no)' ),
+			'woocommerce_enable_review_rating'                        => array( 'writable' => true,  'description' => 'Enable review ratings (yes/no)' ),
+			'woocommerce_review_rating_required'                      => array( 'writable' => true,  'description' => 'Ratings are required (yes/no)' ),
+			'woocommerce_manage_stock'                                => array( 'writable' => true,  'description' => 'Enable stock management (yes/no)' ),
+			'woocommerce_hold_stock_minutes'                          => array( 'writable' => true,  'description' => 'Hold stock (minutes) for unpaid orders' ),
+			'woocommerce_notify_low_stock'                            => array( 'writable' => true,  'description' => 'Low stock notifications (yes/no)' ),
+			'woocommerce_notify_no_stock'                             => array( 'writable' => true,  'description' => 'Out of stock notifications (yes/no)' ),
+			'woocommerce_hide_out_of_stock_items'                     => array( 'writable' => true,  'description' => 'Hide out of stock items (yes/no)' ),
+			'woocommerce_shop_page_id'                                => array( 'writable' => true,  'description' => 'Shop page ID' ),
+			'woocommerce_cart_page_id'                                => array( 'writable' => true,  'description' => 'Cart page ID' ),
+			'woocommerce_checkout_page_id'                            => array( 'writable' => true,  'description' => 'Checkout page ID' ),
+			'woocommerce_myaccount_page_id'                           => array( 'writable' => true,  'description' => 'My Account page ID' ),
+			'woocommerce_enable_ajax_add_to_cart'                     => array( 'writable' => true,  'description' => 'AJAX add to cart on archives (yes/no)' ),
+			'woocommerce_cart_redirect_after_add'                     => array( 'writable' => true,  'description' => 'Redirect to cart after add (yes/no)' ),
+			'woocommerce_demo_store'                                  => array( 'writable' => true,  'description' => 'Store notice enabled (yes/no)' ),
+			'woocommerce_demo_store_notice'                           => array( 'writable' => true,  'description' => 'Store notice text' ),
+			'wc_facebook_pixel_id'                                    => array( 'writable' => false, 'description' => 'Meta pixel ID (read-only)' ),
+			'wc_facebook_page_id'                                     => array( 'writable' => false, 'description' => 'Meta page ID (read-only)' ),
+			'wc_facebook_catalog_id'                                  => array( 'writable' => false, 'description' => 'Meta catalog ID (read-only)' ),
 		);
 	}
 
@@ -115,11 +160,25 @@ class WPAgent_Options_Allowlist {
 	 * Core forbidden() keys stay unlistable as extras; builtin read-only keys (siteurl) remain readable.
 	 */
 	public static function is_blocked_key( string $key ): bool {
-		if ( in_array( $key, array( 'woocommerce_stripe_settings', 'woocommerce_woocommerce_payments_settings' ), true ) ) {
+		$always = array(
+			'woocommerce_stripe_settings',
+			'woocommerce_woocommerce_payments_settings',
+			'googlesitekit_credentials',
+			'wc_facebook_access_token',
+			'wc_facebook_system_user_access_token',
+			'monsterinsights_license',
+			'exactmetrics_license',
+			'jetpack_private_options',
+		);
+		if ( in_array( $key, $always, true ) ) {
 			return true;
 		}
 
-		return (bool) preg_match( '/^woocommerce_(stripe|woocommerce_payments|ppcp|paypal)/', $key );
+		if ( preg_match( '/^woocommerce_(stripe|woocommerce_payments|ppcp|paypal|square|klarna|mollie|razorpay|braintree)/', $key ) ) {
+			return true;
+		}
+
+		return (bool) preg_match( '/(access_token|refresh_token|client_secret|webhook_secret)/i', $key );
 	}
 
 	/**

@@ -33,7 +33,7 @@ export const registerDiagnosticTools: RegisterTools = (server, ctx) => {
 
   server.tool(
     "query_db",
-    "Run a read-only SELECT against the WordPress database. Mutating SQL is rejected. A row limit is enforced server-side.",
+    "Run a read-only SELECT or SHOW TABLES / SHOW TABLES LIKE against the WordPress database. Mutating SQL, SHOW CREATE, and SHOW VARIABLES are rejected. A row limit is enforced on SELECT.",
     {
       site: siteIdSchema,
       sql: z.string().min(8),

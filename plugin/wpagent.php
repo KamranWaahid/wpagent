@@ -3,7 +3,7 @@
  * Plugin Name:       WPAgent
  * Plugin URI:        https://github.com/KamranWaahid/wpagent
  * Description:       Secure MCP bridge so AI assistants can manage this WordPress site through an allowlisted, capability-checked REST API.
- * Version:           0.12.0
+ * Version:           0.15.0
  * Requires at least: 6.0
  * Requires PHP:      8.1
  * Author:            Kamran Wahid
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'WPAGENT_VERSION', '0.12.0' );
+define( 'WPAGENT_VERSION', '0.15.0' );
 define( 'WPAGENT_SLUG', 'wpagent' );
 define( 'WPAGENT_FILE', __FILE__ );
 define( 'WPAGENT_DIR', plugin_dir_path( __FILE__ ) );

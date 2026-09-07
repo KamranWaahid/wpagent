@@ -28,6 +28,9 @@ class WPAgent_Page_Cache {
 			'flush_page_cache',
 			'manage_nav_menu',
 			'delete_nav_menu',
+			'update_product',
+			'update_variation',
+			'update_seo',
 		);
 	}
 

@@ -26,6 +26,7 @@ class WPAgent_REST {
 		$abilities   = new WPAgent_REST_Abilities();
 		$builders    = new WPAgent_REST_Builders();
 		$menus       = new WPAgent_REST_Menus();
+		$woo         = new WPAgent_REST_Woo();
 
 		register_rest_route(
 			WPAGENT_REST_NAMESPACE,
@@ -50,6 +51,7 @@ class WPAgent_REST {
 		$abilities->register_routes();
 		$builders->register_routes();
 		$menus->register_routes();
+		$woo->register_routes();
 	}
 
 	/**

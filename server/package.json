@@ -1,6 +1,6 @@
 {
   "name": "wpagent-mcp-server",
-  "version": "0.12.0",
+  "version": "0.15.0",
   "description": "WPAgent MCP server — translates AI tool calls into authenticated WordPress plugin requests.",
   "homepage": "https://github.com/KamranWaahid/wpagent",
   "bugs": {

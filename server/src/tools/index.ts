@@ -10,11 +10,13 @@ import { registerMediaTools } from "./media.js";
 import { registerSiteTools } from "./site.js";
 import { registerThemeTools } from "./theme.js";
 import { registerUserTools } from "./users.js";
+import { registerWooTools } from "./woo.js";
 
 export function registerAllTools(server: McpServer, ctx: ToolContext): void {
   registerContentTools(server, ctx);
   registerMediaTools(server, ctx);
   registerSiteTools(server, ctx);
+  registerWooTools(server, ctx);
   registerThemeTools(server, ctx);
   registerUserTools(server, ctx);
   registerAuditTools(server, ctx);
