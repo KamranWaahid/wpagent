@@ -1,0 +1,54 @@
+# Production stack: WPAgent MCP + Caddy (automatic HTTPS).
+# Copy ../.env.example to the repo-root .env on the VPS (never commit it).
+# Usage from repo root:
+#   docker compose -f deploy/docker-compose.prod.yml --env-file .env up -d --build
+
+services:
+  wpagent:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    environment:
+      NODE_ENV: production
+      WPAGENT_HTTP_MODE: hosted
+      WPAGENT_HTTP: "1"
+      WPAGENT_HTTP_HOST: 0.0.0.0
+      WPAGENT_HTTP_PORT: "3333"
+      WPAGENT_SESSION_STORE: file
+      WPAGENT_SESSION_DIR: /app/data
+      WPAGENT_TRUST_PROXY: "1"
+      WPAGENT_EMAIL_PROVIDER: resend
+    volumes:
+      - wpagent-sessions:/app/data
+    expose:
+      - "3333"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3333/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      wpagent:
+        condition: service_healthy
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      WPAGENT_DOMAIN: ${WPAGENT_DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  wpagent-sessions:
+  caddy-data:
+  caddy-config:

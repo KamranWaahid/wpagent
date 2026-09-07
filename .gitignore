@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+vendor/
+server/node_modules/
+plugin/vendor/
+
+# Build
+dist/
+server/dist/
+*.zip
+
+# Env / secrets — never commit real site URLs, passwords, or tokens
+.env
+.env.*
+!.env.example
+sites.json
+server/sites.json
+*.local.json
+*.pem
+*.key
+*.p12
+credentials.json
+
+# Tests / caches
+coverage/
+.phpunit.cache
+.phpunit.result.cache
+.nyc_output
+*.tsbuildinfo
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+data/
+server/data/

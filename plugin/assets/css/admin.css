@@ -1,0 +1,567 @@
+.wpagent-wrap {
+	--wpagent-ink: #1d2327;
+	--wpagent-rule: #c3c4c7;
+	--wpagent-paper: #fff;
+	--wpagent-wash: #f0f0f1;
+	--wpagent-signal: #1e4d7b;
+	--wpagent-hazard: #b32d2e;
+	--wpagent-muted: #50575e;
+	--wpagent-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+	--wpagent-radius: 2px;
+	--wpagent-ease: cubic-bezier(0.2, 0, 0, 1);
+	--wpagent-ms: 160ms;
+	box-sizing: border-box;
+	color: var(--wpagent-ink);
+	max-width: 720px;
+}
+
+.wpagent-wrap *,
+.wpagent-wrap *::before,
+.wpagent-wrap *::after {
+	box-sizing: inherit;
+}
+
+.wpagent-wrap--audit {
+	max-width: none;
+}
+
+.wpagent-wrap h1 {
+	margin: 0 0 8px;
+	padding: 0;
+	font-size: 23px;
+	font-weight: 600;
+	line-height: 1.3;
+	color: var(--wpagent-ink);
+}
+
+.wpagent-lede {
+	margin: 0 0 20px;
+	color: var(--wpagent-muted);
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.wpagent-wrap .notice,
+.wpagent-wrap .updated,
+.wpagent-wrap .error {
+	margin: 0 0 20px;
+	padding: 10px 12px;
+	border: 1px solid var(--wpagent-rule);
+	border-radius: var(--wpagent-radius);
+	border-left: 2px solid var(--wpagent-signal);
+	background: var(--wpagent-paper);
+	box-shadow: none;
+	animation: wpagent-settle var(--wpagent-ms) var(--wpagent-ease);
+}
+
+.wpagent-wrap .notice-error,
+.wpagent-wrap .error {
+	border-left-color: var(--wpagent-hazard);
+}
+
+.wpagent-strip {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 6px 0;
+	margin: 0 0 28px;
+	padding: 0 0 12px;
+	border-bottom: 1px solid var(--wpagent-rule);
+	font-size: 13px;
+	line-height: 1.45;
+	color: var(--wpagent-muted);
+}
+
+.wpagent-strip__item {
+	display: inline;
+}
+
+.wpagent-strip__item:not(:last-child)::after {
+	content: "";
+	display: inline-block;
+	width: 1px;
+	height: 0.9em;
+	margin: 0 12px;
+	background: var(--wpagent-rule);
+	vertical-align: -0.1em;
+}
+
+.wpagent-strip code,
+.wpagent-mono {
+	font-family: var(--wpagent-mono);
+	font-size: 12px;
+	background: none;
+	padding: 0;
+	color: var(--wpagent-ink);
+}
+
+.wpagent-ok {
+	color: var(--wpagent-signal);
+	font-weight: 600;
+}
+
+.wpagent-dim {
+	color: var(--wpagent-muted);
+}
+
+.wpagent-section {
+	margin: 0 0 36px;
+}
+
+.wpagent-section:last-child {
+	margin-bottom: 0;
+}
+
+.wpagent-section__title {
+	margin: 0 0 6px;
+	padding: 0;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.3;
+	color: var(--wpagent-ink);
+}
+
+.wpagent-section__help {
+	margin: 0 0 14px;
+	color: var(--wpagent-muted);
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.wpagent-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px 16px;
+	margin: 0;
+}
+
+.wpagent-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 6px 12px;
+	border: 1px solid transparent;
+	border-radius: var(--wpagent-radius);
+	background: transparent;
+	color: var(--wpagent-ink);
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 1.4;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.wpagent-btn:hover {
+	color: var(--wpagent-ink);
+	text-decoration: none;
+}
+
+.wpagent-btn:disabled {
+	opacity: 0.55;
+	cursor: default;
+}
+
+.wpagent-btn--primary {
+	background: var(--wpagent-ink);
+	border-color: var(--wpagent-ink);
+	color: var(--wpagent-paper);
+}
+
+.wpagent-btn--primary:hover,
+.wpagent-btn--primary:focus {
+	background: #000;
+	border-color: #000;
+	color: var(--wpagent-paper);
+}
+
+.wpagent-btn--secondary {
+	background: var(--wpagent-paper);
+	border-color: var(--wpagent-rule);
+	color: var(--wpagent-ink);
+}
+
+.wpagent-btn--secondary:hover {
+	border-color: var(--wpagent-ink);
+}
+
+.wpagent-btn--hazard {
+	padding-left: 0;
+	padding-right: 0;
+	border-color: transparent;
+	background: transparent;
+	color: var(--wpagent-hazard);
+	font-weight: 500;
+}
+
+.wpagent-btn--hazard:hover {
+	color: #8a2424;
+}
+
+.wpagent-text-link {
+	color: var(--wpagent-signal);
+	text-decoration: none;
+	font-size: 13px;
+}
+
+.wpagent-text-link:hover {
+	color: var(--wpagent-ink);
+	text-decoration: underline;
+}
+
+.wpagent-wrap .wpagent-btn:focus-visible,
+.wpagent-wrap .wpagent-text-link:focus-visible,
+.wpagent-wrap input:focus-visible,
+.wpagent-wrap textarea:focus-visible,
+.wpagent-wrap select:focus-visible,
+.wpagent-wrap summary:focus-visible,
+.wpagent-wrap a:focus-visible {
+	outline: 2px solid var(--wpagent-signal);
+	outline-offset: 2px;
+}
+
+.wpagent-secret {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	animation: wpagent-settle var(--wpagent-ms) var(--wpagent-ease);
+}
+
+.wpagent-copy-row {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 8px;
+	margin: 0 0 16px;
+	align-items: start;
+}
+
+.wpagent-copy-row:last-child {
+	margin-bottom: 0;
+}
+
+.wpagent-copy-row label {
+	grid-column: 1 / -1;
+	margin: 0;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.wpagent-copy-row input,
+.wpagent-copy-row textarea {
+	margin: 0;
+	padding: 7px 10px;
+	border: 1px solid var(--wpagent-rule);
+	border-radius: var(--wpagent-radius);
+	background: var(--wpagent-paper);
+	color: var(--wpagent-ink);
+	font-family: var(--wpagent-mono);
+	font-size: 12px;
+	line-height: 1.45;
+	box-shadow: none;
+	min-width: 0;
+	width: 100%;
+}
+
+.wpagent-copy-row textarea {
+	grid-column: 1 / -1;
+	min-height: 200px;
+	resize: vertical;
+}
+
+.wpagent-copy-row textarea + .wpagent-btn {
+	grid-column: 1 / -1;
+	justify-self: start;
+}
+
+.wpagent-footnote {
+	margin: 20px 0 0;
+	padding-top: 16px;
+	border-top: 1px solid var(--wpagent-rule);
+}
+
+.wpagent-passwords {
+	margin: 0 0 10px;
+	padding: 0;
+	list-style: none;
+	font-size: 13px;
+}
+
+.wpagent-passwords li {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0 10px;
+	margin: 0 0 4px;
+	color: var(--wpagent-muted);
+}
+
+.wpagent-passwords strong {
+	color: var(--wpagent-ink);
+	font-weight: 500;
+}
+
+.wpagent-recessed {
+	margin: 0 0 36px;
+	padding: 16px;
+	border: 1px solid var(--wpagent-rule);
+	border-radius: var(--wpagent-radius);
+	background: var(--wpagent-wash);
+}
+
+.wpagent-recessed .wpagent-section__title,
+.wpagent-recessed .wpagent-section__help {
+	color: var(--wpagent-ink);
+}
+
+.wpagent-recessed .wpagent-section__help {
+	color: var(--wpagent-muted);
+}
+
+.wpagent-fields {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 0 0 14px;
+}
+
+.wpagent-field label {
+	display: block;
+	margin: 0 0 4px;
+	font-size: 13px;
+	font-weight: 600;
+}
+
+.wpagent-field input[type="text"],
+.wpagent-field input[type="url"] {
+	width: 100%;
+	max-width: 28rem;
+	margin: 0;
+	padding: 6px 8px;
+	border: 1px solid var(--wpagent-rule);
+	border-radius: var(--wpagent-radius);
+	background: var(--wpagent-paper);
+	color: var(--wpagent-ink);
+	font-size: 13px;
+	line-height: 1.4;
+	box-shadow: none;
+}
+
+.wpagent-checks {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 0 0 28px;
+}
+
+.wpagent-check {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	margin: 0;
+	font-size: 13px;
+	line-height: 1.45;
+}
+
+.wpagent-check input {
+	margin: 3px 0 0;
+}
+
+.wpagent-table-wrap {
+	margin: 0 0 16px;
+	overflow-x: auto;
+	border: 1px solid var(--wpagent-rule);
+	border-radius: var(--wpagent-radius);
+	background: var(--wpagent-paper);
+}
+
+.wpagent-table {
+	width: 100%;
+	margin: 0;
+	border-collapse: collapse;
+	font-size: 13px;
+}
+
+.wpagent-table th,
+.wpagent-table td {
+	padding: 7px 10px;
+	border-bottom: 1px solid var(--wpagent-rule);
+	text-align: left;
+	vertical-align: middle;
+}
+
+.wpagent-table thead th {
+	background: var(--wpagent-wash);
+	font-weight: 600;
+	color: var(--wpagent-ink);
+}
+
+.wpagent-table tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.wpagent-table tbody tr:hover td {
+	background: var(--wpagent-wash);
+}
+
+.wpagent-table .wpagent-mono,
+.wpagent-table code {
+	font-family: var(--wpagent-mono);
+	font-size: 12px;
+	background: none;
+	padding: 0;
+}
+
+.wpagent-mark {
+	margin-left: 6px;
+	color: var(--wpagent-muted);
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.wpagent-table input[type="text"] {
+	width: 100%;
+	min-width: 8rem;
+	margin: 0;
+	padding: 4px 6px;
+	border: 1px solid var(--wpagent-rule);
+	border-radius: var(--wpagent-radius);
+	background: var(--wpagent-paper);
+	font-family: var(--wpagent-mono);
+	font-size: 12px;
+	box-shadow: none;
+}
+
+.wpagent-table input.wpagent-input-ui {
+	font-family: inherit;
+	font-size: 13px;
+}
+
+.wpagent-row-add td {
+	background: var(--wpagent-wash);
+}
+
+.wpagent-row-add:hover td {
+	background: var(--wpagent-wash);
+}
+
+.wpagent-row-extra td:last-child,
+.wpagent-row-add td:last-child {
+	white-space: nowrap;
+	width: 1%;
+}
+
+.wpagent-table--audit {
+	border: 0;
+}
+
+.wpagent-table--audit th,
+.wpagent-table--audit td {
+	padding: 6px 10px;
+}
+
+.wpagent-table--audit .wpagent-result {
+	font-weight: 500;
+}
+
+.wpagent-table--audit .wpagent-result--denied,
+.wpagent-table--audit .wpagent-result--error {
+	color: var(--wpagent-hazard);
+}
+
+.wpagent-details {
+	margin: 0;
+}
+
+.wpagent-details summary {
+	cursor: pointer;
+	color: var(--wpagent-signal);
+	font-size: 13px;
+	list-style: none;
+}
+
+.wpagent-details summary::-webkit-details-marker {
+	display: none;
+}
+
+.wpagent-details[open] summary {
+	margin-bottom: 6px;
+}
+
+.wpagent-json {
+	margin: 0;
+	max-height: 240px;
+	overflow: auto;
+	padding: 8px 10px;
+	border: 1px solid var(--wpagent-rule);
+	border-radius: var(--wpagent-radius);
+	background: var(--wpagent-wash);
+	color: var(--wpagent-ink);
+	font-family: var(--wpagent-mono);
+	font-size: 12px;
+	line-height: 1.45;
+	white-space: pre-wrap;
+	animation: wpagent-settle var(--wpagent-ms) var(--wpagent-ease);
+}
+
+.wpagent-pager {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	margin: 12px 0 0;
+}
+
+.wpagent-pager [aria-current="page"] {
+	font-weight: 600;
+	color: var(--wpagent-ink);
+	padding: 6px 8px;
+}
+
+.wpagent-empty {
+	color: var(--wpagent-muted);
+}
+
+@keyframes wpagent-settle {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@media (max-width: 782px) {
+	.wpagent-wrap {
+		max-width: none;
+	}
+
+	.wpagent-strip__item:not(:last-child)::after {
+		margin: 0 8px;
+	}
+
+	.wpagent-copy-row {
+		grid-template-columns: 1fr;
+	}
+
+	.wpagent-copy-row .wpagent-btn,
+	.wpagent-actions .wpagent-btn {
+		width: 100%;
+		justify-self: stretch;
+	}
+
+	.wpagent-field input[type="text"],
+	.wpagent-field input[type="url"] {
+		max-width: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wpagent-wrap .notice,
+	.wpagent-wrap .updated,
+	.wpagent-wrap .error,
+	.wpagent-secret,
+	.wpagent-json {
+		animation: none;
+	}
+}

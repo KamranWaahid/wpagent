@@ -1,0 +1,12 @@
+node_modules
+server/node_modules
+plugin/vendor
+dist
+server/dist
+.git
+.gitignore
+*.zip
+data
+.env
+coverage
+.phpunit.cache
